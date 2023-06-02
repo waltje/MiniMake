@@ -1,0 +1,27 @@
+CC	= cl /nologo
+CFLAGS	= /O2
+
+PROG	= mk.exe
+SYSOBJ	= setargv.obj
+OBJ	= check.obj input.obj macro.obj main.obj make.obj \
+	  reader.obj rules.obj archive.obj
+
+
+.c.obj:	$<
+	$(CC) $(CFLAGS) -c $<
+
+.SUFFIXES: .c .obj
+
+
+all:	$(PROG)
+
+
+$(PROG):	$(OBJ)
+	$(CC) /Fe$@ $(SYSOBJ) $(OBJ) $(LDLIBS)
+
+
+clean:
+	$(RM) *.obj
+
+clobber: clean
+	$(RM) $(PROG)

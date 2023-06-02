@@ -1,0 +1,19 @@
+CC	= cc
+RM	= rm -f
+CFLAGS = -O2
+
+PROG	= mk.exe
+OBJ	= check.o input.o macro.o main.o make.o reader.o rules.o archive.o
+
+
+all:	$(PROG)
+
+
+$(PROG):	$(OBJ)
+	$(CC) -o $@ $(OBJ)
+
+clean:
+	$(RM) *.o *.bak core
+
+clobber: clean
+	$(RM) $(PROG)
